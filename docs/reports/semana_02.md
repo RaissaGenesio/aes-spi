@@ -24,5 +24,37 @@ A S-box foi testada para todas as 256 possíveis entradas de 8 bits.
 
 Resultado:
 
-```text
 PASS: todas as 256 entradas da S-box estao corretas.
+
+### SubBytes
+
+O módulo SubBytes foi validado utilizando os estados intermediários da FIPS-197 para as rodadas 1 e 10.
+
+Resultados:
+
+PASS - SubBytes Round 1
+PASS - SubBytes Round 10
+PASS: todos os testes SubBytes passaram.
+
+
+### ShiftRows
+O módulo ShiftRows também foi validado utilizando os estados intermediários das rodadas 1 e 10 da FIPS-197.
+
+Resultados:
+
+PASS - ShiftRows Round 1
+PASS - ShiftRows Round 10
+PASS: todos os testes ShiftRows passaram.
+
+### Lint e fluxo de execução
+O lint foi executado com o VCS utilizando +lint=all, sem erros.
+
+O Makefile foi atualizado para permitir a execução completa dos testes da Semana 2 através de um único comando:
+´make week2´
+Esse comando executa:
+1. lint dos três módulos;
+2. teste das 256 entradas da S-box;
+3. teste do SubBytes;
+4. teste do ShiftRows.
+Ao final da execução foi obtido:
+PASS: Semana 2 concluida com sucesso.
