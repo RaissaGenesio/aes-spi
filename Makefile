@@ -1,27 +1,45 @@
 VCS = vcs -full64 -sverilog
 
-RTL = rtl/porta_and.sv
-TB  = tb/porta_and_tb.sv
+SBOX       = rtl/minisoc_aes/minisoc_aes_sbox.sv
+SUBBYTES   = rtl/minisoc_aes/minisoc_aes_sub_bytes.sv
+SHIFTROWS  = rtl/minisoc_aes/minisoc_aes_shift_rows.sv
 
-SIMV      = simv
-SIMV_LINT = simv_lint
+SBOX_TB      = tb/minisoc_aes_sbox_tb.sv
+SUBBYTES_TB  = tb/minisoc_aes_sub_bytes_tb.sv
+SHIFTROWS_TB = tb/minisoc_aes_shift_rows_tb.sv
 
-.PHONY: all compile sim lint clean
+.PHONY: all week2 lint sbox_test subbytes_test shiftrows_test week1 clean
 
-all: lint sim
+all: week2
 
-
-compile:
-	$(VCS) $(RTL) $(TB) -o $(SIMV)
-
-sim: compile
-	./$(SIMV)
+week2: lint sbox_test subbytes_test shiftrows_test
+	@echo "===================================="
+	@echo "PASS: Semana 2 concluida com sucesso."
+	@echo "===================================="
 
 lint:
-	$(VCS) +lint=all $(RTL) -o $(SIMV_LINT)
+	$(VCS) +lint=all $(SBOX) $(SUBBYTES) $(SHIFTROWS) -o simv_week2_lint
+
+sbox_test:
+	$(VCS) $(SBOX) $(SBOX_TB) -o simv_sbox_tb
+	./simv_sbox_tb
+
+subbytes_test:
+	$(VCS) $(SBOX) $(SUBBYTES) $(SUBBYTES_TB) -o simv_subbytes_tb
+	./simv_subbytes_tb
+
+shiftrows_test:
+	$(VCS) $(SHIFTROWS) $(SHIFTROWS_TB) -o simv_shiftrows_tb
+	./simv_shiftrows_tb
+
+week1:
+	$(VCS) rtl/porta_and.sv tb/porta_and_tb.sv -o simv
+	./simv
 
 clean:
-	clean:
-	rm -rf simv simv.daidir simv_lint simv_lint.daidir csr
-c ucli.key spyglass.out *.log
-
+	rm -rf simv simv.daidir \
+	simv_sbox_tb simv_sbox_tb.daidir \
+	simv_subbytes_tb simv_subbytes_tb.daidir \
+	simv_shiftrows_tb simv_shiftrows_tb.daidir \
+	simv_week2_lint simv_week2_lint.daidir \
+	csrc ucli.key spyglass.out *.log
