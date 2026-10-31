@@ -58,5 +58,7 @@ Esse comando executa:
 2. teste das 256 entradas da S-box;
 3. teste do SubBytes;
 4. teste do ShiftRows.
+
 Ao final da execução foi obtido:
+
 PASS: Semana 2 concluida com sucesso.
