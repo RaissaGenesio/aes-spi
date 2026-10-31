@@ -96,12 +96,6 @@ Os módulos `SubBytes` e `ShiftRows` foram verificados utilizando estados interm
 
 ## Execução dos testes da Semana 2
 
-Após configurar o ambiente Synopsys:
-
-```bash
-source /Tools/synopsys-scripts/snps.sh
-```
-
 execute:
 
 ```bash
@@ -119,17 +113,3 @@ Uma execução válida termina com:
 
 ```text
 PASS: Semana 2 concluida com sucesso.
-```
-
-## Limpeza dos arquivos gerados
-
-Para remover os arquivos temporários e executáveis gerados pelas simulações:
-
-```bash
-make clean
-```
-
-## Referências
-
-- Block Guide — MiniSoC AES v1.0.0;
-- NIST FIPS 197 — Advanced Encryption Standard (AES).
