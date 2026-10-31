@@ -50,7 +50,7 @@ PASS: todos os testes ShiftRows passaram.
 O lint foi executado com o VCS utilizando +lint=all, sem erros.
 
 O Makefile foi atualizado para permitir a execução completa dos testes da Semana 2 através de um único comando:
-´make week2´
+`make week2`
 Esse comando executa:
 1. lint dos três módulos;
 2. teste das 256 entradas da S-box;
