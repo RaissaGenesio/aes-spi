@@ -127,8 +127,6 @@ Cifragem:     key_index = round_count
 Decriptação:  key_index = 10 - round_count
 ```
 
-> **Observação:** essa estratégia ainda depende da implementação do Key Schedule, prevista para a próxima etapa do projeto.
-
 ## 5.Controle das rodadas
 
 Foi definido um contador de 4 bits, `round_count[3:0]`, que representa as rodadas de 0 a 10.
