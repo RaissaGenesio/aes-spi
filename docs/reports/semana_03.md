@@ -158,10 +158,6 @@ Foi definida uma FSM com quatro estados principais: `IDLE`, `INIT`, `ROUND` e `F
 
 ### Diagrama da máquina de estados
 
-A máquina de estados utilizada para controlar a execução do AES é apresentada na figura abaixo.
-
-![Máquina de estados do controle AES](../architecture/aes_fsm.png)
-
 ### IDLE
 
 Estado de espera por uma nova operação.
