@@ -20,7 +20,7 @@ A especificação funcional do projeto segue o **Block Guide MiniSoC AES v1.0.0*
 O sistema é organizado em quatro blocos funcionais principais:
 
 - **SPI Front-End** — configuração, comando e leitura de status;
-- **AES Engine** — processamento de criptografia e decriptação AES-128;
+- **AES Engine** — processamento de cifragem e decriptação AES-128;
 - **Memória compartilhada** — armazenamento dos blocos de entrada e dos resultados;
 - **PLL Mock** — geração do clock utilizado pelo domínio do AES.
 
@@ -32,7 +32,14 @@ A interface `MEMORY DATA` permite o acesso externo à memória quando ela não e
 .
 ├── docs/
 │   ├── architecture/
+│   │   ├── aes_datapath.pdf
+│   │   ├── aes_datapath.png
+│   │   ├── aes_fsm.png
+│   │   └── aes_microarchitecture.md
 │   ├── reports/
+│   │   ├── semana_01.md
+│   │   ├── semana_02.md
+│   │   └── semana_03.md
 │   └── spec/
 ├── formal/
 ├── models/
@@ -40,7 +47,13 @@ A interface `MEMORY DATA` permite o acesso externo à memória quando ela não e
 │   ├── minisoc_aes/
 │   │   ├── minisoc_aes_sbox.sv
 │   │   ├── minisoc_aes_sub_bytes.sv
-│   │   └── minisoc_aes_shift_rows.sv
+│   │   ├── minisoc_aes_shift_rows.sv
+│   │   ├── minisoc_aes_mix_columns.sv
+│   │   ├── minisoc_aes_add_round_key.sv
+│   │   ├── minisoc_aes_inv_sbox.sv
+│   │   ├── minisoc_aes_inv_sub_bytes.sv
+│   │   ├── minisoc_aes_inv_shift_rows.sv
+│   │   └── minisoc_aes_inv_mix_columns.sv
 │   ├── minisoc_mem/
 │   ├── minisoc_pll/
 │   ├── minisoc_spi/
@@ -56,7 +69,7 @@ A interface `MEMORY DATA` permite o acesso externo à memória quando ela não e
 ## Organização
 
 - `docs/spec/` — especificações do projeto e Block Guide;
-- `docs/architecture/` — documentação de arquitetura e microarquitetura;
+- `docs/architecture/` — documentação de arquitetura, datapath e máquina de estados;
 - `docs/reports/` — relatórios semanais;
 - `rtl/minisoc_aes/` — módulos relacionados ao AES;
 - `rtl/minisoc_mem/` — memória compartilhada;
@@ -73,43 +86,4 @@ A interface `MEMORY DATA` permite o acesso externo à memória quando ela não e
 
 ## Estado atual
 
-### Semana 1 — Ambiente e estudos
-
-Foram realizados:
-
-- configuração inicial do repositório;
-- preparação do ambiente com VCS;
-- estudo do AES e do protocolo SPI;
-- criação de um fluxo mínimo de compilação, lint e simulação.
-
-### Semana 2 — SubBytes e ShiftRows
-
-Foram implementados:
-
-- `minisoc_aes_sbox`;
-- `minisoc_aes_sub_bytes`;
-- `minisoc_aes_shift_rows`.
-
-A S-box foi verificada para todas as **256 entradas possíveis**.
-
-Os módulos `SubBytes` e `ShiftRows` foram verificados utilizando estados intermediários da FIPS-197, incluindo as rodadas 1 e 10.
-
-## Execução dos testes da Semana 2
-
-execute:
-
-```bash
-make week2
-```
-
-O comando executa:
-
-1. lint dos módulos da Semana 2;
-2. teste das 256 entradas da S-box;
-3. teste do SubBytes;
-4. teste do ShiftRows.
-
-Uma execução válida termina com:
-
-```text
-PASS: Semana 2 concluida com sucesso.
+### Semana 1 — Ambiente e
