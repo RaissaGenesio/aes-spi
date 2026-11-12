@@ -65,6 +65,12 @@ Eles são utilizados para controlar os multiplexadores do datapath:
 
 A lógica de controle utiliza uma FSM com quatro estados: `IDLE`, `INIT`, `ROUND` e `FINAL`.
 
+### Diagrama da máquina de estados
+
+A máquina de estados utilizada para controlar a execução do AES é apresentada na figura abaixo.
+
+![Máquina de estados do controle AES](aes_fsm.png)
+
 ### IDLE
 
 Aguarda o comando `start`.
