@@ -1,34 +1,37 @@
 `timescale 1ns/1ps
 
 module minisoc_aes_dp_encrypt_tb;
+	logic         clk_i;
+	logic         rst_n_i;
+	logic         start_i;
+	logic         decrypt_i;
+	logic [127:0] block_i;
+	logic [127:0] key_i;
 
-    logic         clk_i;
-    logic         rst_n_i;
-    logic         start_i;
-    logic [127:0] block_i;
-    logic [127:0] key_i;
-
-    logic [127:0] block_o;
-    logic         busy_o;
-    logic         done_o;
+	logic [127:0] block_o;
+	logic         busy_o;
+	logic         done_o;
 
     integer cycles;
 
     // Clock de 100 MHz.
     initial begin
         clk_i = 1'b0;
+        decrypt_i = 1'b0;
         forever #5 clk_i = ~clk_i;
     end
 
     minisoc_aes_dp dut (
-        .clk_i   (clk_i),
-        .rst_n_i (rst_n_i),
-        .start_i (start_i),
-        .block_i (block_i),
-        .key_i   (key_i),
-        .block_o (block_o),
-        .busy_o  (busy_o),
-        .done_o  (done_o)
+    	.clk_i     (clk_i),
+    	.rst_n_i   (rst_n_i),
+    	.start_i   (start_i),
+    	.decrypt_i (decrypt_i),
+    	.block_i   (block_i),
+    	.key_i     (key_i),
+    	.block_o   (block_o),
+    	.busy_o    (busy_o),
+    	.done_o    (done_o)
+	
     );
 
     task automatic run_encrypt_test (
